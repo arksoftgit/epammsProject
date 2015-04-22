@@ -1,0 +1,141 @@
+<html>
+<head>
+<title>Sort Primary Registrants List</title>
+<link href="./css/zeidon_allrelative.css" rel="stylesheet" type="text/css">
+<link href="./css/zeidon.css" rel="stylesheet" type="text/css">
+<link href="./css/main.css" rel="stylesheet" type="text/css">
+<script language="JavaScript" type="text/javascript" src="./js/common.js"></script>
+<script language="JavaScript" type="text/javascript" src="./js/css.js"></script>
+<script language="JavaScript" type="text/javascript" src="./js/validations.js"></script>
+<script language="JavaScript" type="text/javascript" src="./js/scw.js"></script>
+<script language="JavaScript" type="text/javascript" src="./js/animatedcollapse.js"></script>
+<script language="JavaScript" type="text/javascript" src="./js/md5.js"></script>
+<style>
+body {  // <link rel="stylesheet" href="/resources/demos/style.css">
+   font-size: 62.5%;
+   font-family: "Trebuchet MS", "Arial", "Helvetica", "Verdana", "sans-serif";
+}
+//#DraggableSortTable { list-style-type: none; margin: 0; padding: 0; width: 60%; }
+//#DraggableSortTable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: 18px; }
+//#DraggableSortTable li span { position: absolute; margin-left: -1.3em; }
+</style>
+<script src="http://code.jquery.com/ui/1.11.0/themes/smoothness/jquery-ui.css"></script>
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/ui/1.11.0/jquery-ui.js"></script>
+<script src="js/jquery.blockUI.js"></script>
+<script src="js/jsoeUtils.js"></script>
+<script src="js/jsoe.js"></script>
+<script>
+function loadSortableList() {
+alert('loadSortableList has fired!');
+}
+function SaveOrder() { alert( 'Save Order' ); };
+function CancelOrder() { alert( 'Cancel Order' ); }
+</script>
+<script>
+$(document).ready( function() { // Once the page has loaded and is ready, the alert below will fire.
+loadSortableList();
+alert('Your page has loaded - and Now this alert appears!');
+});
+</script>
+<script>
+$(function() {
+$( "#DraggableSortTable" ).sortable();
+$( "#DraggableSortTable" ).disableSelection();
+var fixHelperModified = function(e, tr) {
+var $originals = tr.children();
+var $helper = tr.clone();
+$helper.children().each(function(index) {
+$(this).width($originals.eq(index).width());
+});
+return $helper;
+},
+updateIndex = function(e, ui) {
+$('td.index', ui.item.parent()).each(function (k) {
+// $(this).html(k + 1);
+if ( k % 2 ) {
+// console.log( "adding class odd at: " + k );
+$(this).closest("tr").addClass( "odd" );
+} else {
+// console.log( "removing class odd at: " + k );
+$(this).closest("tr").removeClass( "odd" );
+}
+});
+};
+$("#DraggableSortTable tbody").sortable({
+helper: fixHelperModified,
+stop: updateIndex
+}).disableSelection();    
+});
+</script>
+</head>
+<body onload="loadSortableList()">
+<div id="water"></div>
+<div id="maincontent" style="margin-left:200;padding-left:0;border-left:0">
+<div id="contentnosidemenu">
+<textarea id="SortableList" style="display:none;"></textarea>
+<!-- This is added as a line spacer -->
+<div style="height:12px;width:100px;"></div>
+<div>  <!-- Beginning of a new line -->
+</div>  <!-- End of a new line -->
+<div style="clear:both;"></div>  <!-- Moving to a new line, so do a clear -->
+<div id="ControlsRow">
+<button type="button" class="newbutton" value="Save Order" onClick="SaveOrder()" style="width:78px;height:26px;">Save Order</button>
+<button type="button" class="newbutton" value="Cancel" onClick="CancelOrder()" style="width:78px;height:26px;">Cancel</button>
+</div>
+<!-- This is added as a line spacer -->
+<div style="height:20px;width:100px;"></div>
+<div>  <!-- Beginning of a new line -->
+</div>  <!-- End of a new line -->
+<div style="clear:both;"></div>  <!-- Moving to a new line, so do a clear -->
+<div id="zDontKnowWhyThisIsHere" class="zDontKnowWhyThisIsHere"></div>
+<form id="InvisibleLink" target="_blank">
+<table style="margin-left:100;padding-left:0;border-left:0" id="DraggableSortTable">
+<thead><tr>
+<th>Order</th>
+<th>Name</th>
+<th>Login</th>
+<th>Description</th>
+</tr></thead><tbody><tr class='odd'>
+<td class="index" nowrap><a href="#" id="Order::1">1</a></td>
+<td nowrap><a href="#" id="Name::1">Lonza (LZA)</a></td>
+<td nowrap><a href="#" id="Login::1">Lonza</a></td>
+<td nowrap><a href="#" id="Description::1">�</a></td>
+</tr>
+<tr>
+<td class="index" nowrap><a href="#" id="Order::2">2</a></td>
+<td nowrap><a href="#" id="Name::2">Administrator (Non EPA)</a></td>
+<td nowrap><a href="#" id="Login::2">Admin</a></td>
+<td nowrap><a href="#" id="Description::2">ePamms Administrator</a></td>
+</tr>
+<tr class='odd'>
+<td class="index" nowrap><a href="#" id="Order::3">3</a></td>
+<td nowrap><a href="#" id="Name::3">�</a></td>
+<td nowrap><a href="#" id="Login::3">�</a></td>
+<td nowrap><a href="#" id="Description::3">�</a></td>
+</tr>
+<tr>
+<td class="index" nowrap><a href="#" id="Order::4">4</a></td>
+<td nowrap><a href="#" id="Name::4">�</a></td>
+<td nowrap><a href="#" id="Login::4">�</a></td>
+<td nowrap><a href="#" id="Description::4">�</a></td>
+</tr>
+<tr class='odd'>
+<td class="index" nowrap><a href="#" id="Order::5">5</a></td>
+<td nowrap><a href="#" id="Name::5">�</a></td>
+<td nowrap><a href="#" id="Login::5">�</a></td>
+<td nowrap><a href="#" id="Description::5">�</a></td>
+</tr>
+<tr>
+<td class="index" nowrap><a href="#" id="Order::6">6</a></td>
+<td nowrap><a href="#" id="Name::6">Aaa (Non EPA)</a></td>
+<td nowrap><a href="#" id="Login::6">Aaa</a></td>
+<td nowrap><a href="#" id="Description::6">Aaa Administrator</a></td>
+</tr>
+</tbody>
+</table>
+</form>
+</div>   <!-- This is the end tag for the div 'contentnosidemenu' -->
+</div>   <!-- This is the end tag for the div 'maincontent' -->
+</body>
+</html>
