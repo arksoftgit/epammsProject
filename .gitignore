@@ -75,6 +75,7 @@ z__temp.vml
 # Packages
 *.egg
 *.egg-info
+target/
 x/
 .svn/
 fop/
